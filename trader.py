@@ -117,6 +117,8 @@ class Trader:
                 orders.append(Order(product, bid_price, -give))
                 sell_capacity -= give
 
+        print(f"FAIR:EMERALDS:{EMERALD_FAIR}")
+
         # ── Passive quotes at fair ± 1 ──
         # Skew based on inventory to mean-revert position
         skew = int(position / limit * 2)  # -2 to +2
@@ -163,6 +165,7 @@ class Trader:
             self._ema[product] = alpha * mid + (1 - alpha) * self._ema[product]
 
         fair = self._ema[product]
+        print(f"FAIR:TOMATOES:{fair:.4f}")
 
         orders: List[Order] = []
         buy_capacity  = limit - position

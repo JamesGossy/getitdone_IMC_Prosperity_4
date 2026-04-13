@@ -16,13 +16,15 @@ Plus a built-in matplotlib visualiser with:
 
 Usage
 -----
-  python backtester.py <trader_file.py> [round] [--data TUTORIAL_ROUND_1] [--merge-pnl] [--no-vis]
+  python backtester.py <trader_file.py> [round] [--data data] [--merge-pnl] [--no-vis]
 
 Examples
 --------
-  python backtester.py trader.py 1 --data TUTORIAL_ROUND_1
-  python backtester.py trader.py 1 --data TUTORIAL_ROUND_1 --merge-pnl
-  python backtester.py trader.py 1 --data TUTORIAL_ROUND_1 --no-vis
+  python backtester.py trader.py 0
+  python backtester.py trader.py 0 --merge-pnl
+  python backtester.py trader.py 0 --no-vis
+  python backtester.py trader.py 0 --days -2 -1
+  python backtester.py trader.py 0 --data /path/to/other/data
 """
 
 from __future__ import annotations
@@ -140,8 +142,8 @@ def _col_ints(cols: list[str], indices: list[int]) -> list[int]:
 
 
 def load_day(data_dir: Path, round_num: int, day_num: int) -> Optional[DayData]:
-    prices_file = data_dir / f"round{round_num}" / f"prices_round_{round_num}_day_{day_num}.csv"
-    trades_file = data_dir / f"round{round_num}" / f"trades_round_{round_num}_day_{day_num}.csv"
+    prices_file = data_dir / f"prices_round_{round_num}_day_{day_num}.csv"
+    trades_file = data_dir / f"trades_round_{round_num}_day_{day_num}.csv"
 
     if not prices_file.exists():
         return None
@@ -292,7 +294,7 @@ def _enforce_limits(state, data: DayData, orders: dict, limits_override):
     for product in list(orders.keys()):
         pos = state.position.get(product, 0)
         lim = get_limit(product, limits_override)
-        total_long  = sum(o.quantity for o in orders[product] if o.quantity > 0)
+        total_long = sum(o.quantity for o in orders[product] if o.quantity > 0)
         total_short = sum(abs(o.quantity) for o in orders[product] if o.quantity < 0)
         if pos + total_long > lim or pos - total_short < -lim:
             print(f"  [LIMIT] Orders for {product} cancelled (would exceed ±{lim})")
@@ -310,6 +312,9 @@ class TimestepRecord:
     mid_price: float
     pnl: float           # mark-to-market PnL at this timestamp
     position: int
+    best_bid: Optional[float] = None
+    best_ask: Optional[float] = None
+    fair_price: Optional[float] = None
 
 
 @dataclass
@@ -325,7 +330,7 @@ class DayResult:
     round_num: int
     day_num: int
     records: list[TimestepRecord] = field(default_factory=list)
-    my_trades: list[TradeRecord]  = field(default_factory=list)
+    my_trades: list[TradeRecord] = field(default_factory=list)
 
     def final_pnl(self) -> dict[str, float]:
         """PnL per product at the last timestamp."""
@@ -362,7 +367,7 @@ def run_day(trader, data: DayData, limits_override=None, verbose=False) -> DayRe
     for i, ts in enumerate(timestamps):
         # Progress bar
         pct = int(50 * i / total)
-        bar = "█" * pct + "░" * (50 - pct)
+        bar = "#" * pct + "." * (50 - pct)
         print(f"\r  [{bar}] {i}/{total}", end="", flush=True)
 
         state.timestamp = ts
@@ -391,6 +396,18 @@ def run_day(trader, data: DayData, limits_override=None, verbose=False) -> DayRe
             except Exception as e:
                 print(f"\n  [ERROR] Trader raised at ts={ts}: {e}")
                 orders, conversions, trader_data = {}, 0, trader_data
+
+        # Parse fair prices from trader stdout: lines like "FAIR:<product>:<price>"
+        fair_prices_this_ts: dict[str, float] = {}
+        for line in buf.getvalue().splitlines():
+            line = line.strip()
+            if line.startswith("FAIR:"):
+                parts = line.split(":")
+                if len(parts) == 3:
+                    try:
+                        fair_prices_this_ts[parts[1].strip()] = float(parts[2].strip())
+                    except ValueError:
+                        pass
 
         if verbose and buf.getvalue().strip():
             print(f"\n  [LOG ts={ts}] {buf.getvalue().strip()}")
@@ -425,15 +442,20 @@ def run_day(trader, data: DayData, limits_override=None, verbose=False) -> DayRe
                 continue
             pos = state.position.get(product, 0)
             mtm_pnl = data.profit_loss[product] + pos * row.mid_price
+            best_bid = float(row.bid_prices[0]) if row.bid_prices else None
+            best_ask = float(row.ask_prices[0]) if row.ask_prices else None
             result.records.append(TimestepRecord(
                 timestamp=ts,
                 product=product,
                 mid_price=row.mid_price,
                 pnl=mtm_pnl,
                 position=pos,
+                best_bid=best_bid,
+                best_ask=best_ask,
+                fair_price=fair_prices_this_ts.get(product),
             ))
 
-    print(f"\r  [{'█'*50}] {total}/{total}", flush=True)
+    print(f"\r  [{'#'*50}] {total}/{total}", flush=True)
     return result
 
 
@@ -571,7 +593,7 @@ def visualise(day_results: list[DayResult], metrics: dict, merge_pnl: bool) -> N
 
     # ── Build merged time series ─────────────────────────────────────────
     # timestamps are stitched (offset across days so they increase monotonically)
-    stitched: dict[str, dict] = {p: {"ts": [], "mid": [], "pnl": [], "pos": []} for p in products}
+    stitched: dict[str, dict] = {p: {"ts": [], "mid": [], "pnl": [], "pos": [], "bid": [], "ask": [], "fair": []} for p in products}
     all_ts_total: dict[int, float] = {}  # stitched ts -> total PnL
     my_trades_merged: list[TradeRecord] = []
 
@@ -596,6 +618,9 @@ def visualise(day_results: list[DayResult], metrics: dict, merge_pnl: bool) -> N
                     stitched[p]["mid"].append(rec.mid_price)
                     stitched[p]["pnl"].append(adj_pnl)
                     stitched[p]["pos"].append(rec.position)
+                    stitched[p]["bid"].append(rec.best_bid)
+                    stitched[p]["ask"].append(rec.best_ask)
+                    stitched[p]["fair"].append(rec.fair_price)
                     total_pnl += adj_pnl
             all_ts_total[sts] = total_pnl
 
@@ -675,9 +700,33 @@ def visualise(day_results: list[DayResult], metrics: dict, merge_pnl: bool) -> N
     # ── Rows 2+: Mid-price per product with trades overlaid ───────────────
     for pi, p in enumerate(products):
         ax = axes[2 + pi]
-        style_ax(ax, f"{p} — Mid Price + Your Trades")
+        style_ax(ax, f"{p} — Price + Your Trades")
         d = stitched[p]
-        ax.plot(d["ts"], d["mid"], color=pcols[p], linewidth=1.0, label="mid price")
+
+        # Best bid / ask as filled band
+        bid_vals = d["bid"]
+        ask_vals = d["ask"]
+        ts_arr   = d["ts"]
+        if any(v is not None for v in bid_vals):
+            clean_bid = [v if v is not None else float("nan") for v in bid_vals]
+            clean_ask = [v if v is not None else float("nan") for v in ask_vals]
+            ax.fill_between(ts_arr, clean_bid, clean_ask,
+                            alpha=0.12, color=pcols[p], label="bid-ask spread")
+            ax.plot(ts_arr, clean_bid, color=GREEN, linewidth=0.7,
+                    alpha=0.7, linestyle="-", label="best bid")
+            ax.plot(ts_arr, clean_ask, color=RED,   linewidth=0.7,
+                    alpha=0.7, linestyle="-", label="best ask")
+
+        # Mid price
+        ax.plot(ts_arr, d["mid"], color=pcols[p], linewidth=1.2,
+                label="mid price", zorder=3)
+
+        # Fair price (only if trader emitted FAIR: lines)
+        fair_vals = d["fair"]
+        if any(v is not None for v in fair_vals):
+            clean_fair = [v if v is not None else float("nan") for v in fair_vals]
+            ax.plot(ts_arr, clean_fair, color=ORANGE, linewidth=1.2,
+                    linestyle="--", label="fair price", zorder=4)
 
         buys  = [t for t in my_trades_merged if t.product == p and t.quantity > 0]
         sells = [t for t in my_trades_merged if t.product == p and t.quantity < 0]
@@ -706,6 +755,23 @@ def visualise(day_results: list[DayResult], metrics: dict, merge_pnl: bool) -> N
              ha="right", va="top", fontsize=8, color=TEXT,
              fontfamily="monospace",
              bbox=dict(boxstyle="round,pad=0.4", facecolor=PANEL, edgecolor=BORDER))
+
+    # ── Scroll-wheel zooms x-axis only, y autoscales to visible data ────
+    def _on_scroll(event):
+        if event.inaxes is None:
+            return
+        ax = event.inaxes
+        factor = 0.85 if event.button == "up" else 1.0 / 0.85
+        xmin, xmax = ax.get_xlim()
+        cx = event.xdata if event.xdata is not None else (xmin + xmax) / 2
+        ax.set_xlim(cx - (cx - xmin) * factor, cx + (xmax - cx) * factor)
+        # Sync all axes to the same x range
+        for other in axes:
+            if other is not ax:
+                other.set_xlim(ax.get_xlim())
+        fig.canvas.draw_idle()
+
+    fig.canvas.mpl_connect("scroll_event", _on_scroll)
 
     plt.savefig("backtest_results.png", dpi=150, bbox_inches="tight", facecolor=BG)
     print("\nChart saved to backtest_results.png")
@@ -736,10 +802,10 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("algorithm", type=Path, help="Path to trader .py file")
-    parser.add_argument("round", type=int, nargs="?", default=1,
-                        help="Round number to backtest (default: 1)")
-    parser.add_argument("--data", type=Path, default=Path("TUTORIAL_ROUND_1"),
-                        help="Path to data directory (default: TUTORIAL_ROUND_1)")
+    parser.add_argument("round", type=int, nargs="?", default=0,
+                        help="Round number to backtest (default: 0)")
+    parser.add_argument("--data", type=Path, default=Path("data"),
+                        help="Path to data directory (default: data)")
     parser.add_argument("--days", nargs="+", type=int,
                         help="Specific day numbers to test, e.g. --days -2 -1 0")
     parser.add_argument("--merge-pnl", action="store_true",
@@ -751,6 +817,8 @@ def main():
     parser.add_argument("--limit", action="append", default=[],
                         metavar="PRODUCT:N",
                         help="Override position limit, e.g. --limit EMERALDS:20")
+    parser.add_argument("--product", type=str, default=None,
+                        help="Only backtest this product, e.g. --product RAINFOREST_RESIN")
     args = parser.parse_args()
 
     # Parse limit overrides
@@ -768,13 +836,13 @@ def main():
     else:
         day_nums = []
         for d in range(-5, 10):
-            f = args.data / f"round{round_num}" / f"prices_round_{round_num}_day_{d}.csv"
+            f = args.data / f"prices_round_{round_num}_day_{d}.csv"
             if f.exists():
                 day_nums.append(d)
 
     if not day_nums:
-        print(f"No data found in {args.data}/round{round_num}/")
-        print("Expected files like: prices_round_1_day_-1.csv")
+        print(f"No data found in {args.data}/")
+        print(f"Expected files like: prices_round_{round_num}_day_-1.csv")
         sys.exit(1)
 
     print(f"Found days: {day_nums}")
@@ -788,6 +856,13 @@ def main():
         if data is None:
             print(f"  Skipping day {day_num} — file not found")
             continue
+
+        if args.product:
+            if args.product not in data.products:
+                print(f"  Skipping day {day_num} — product {args.product!r} not found (available: {data.products})")
+                continue
+            data.products = [args.product]
+            data.profit_loss = {args.product: 0.0}
 
         print(f"\nBacktesting round {round_num} day {day_num}:")
         result = run_day(trader, data, limits_override, args.verbose)

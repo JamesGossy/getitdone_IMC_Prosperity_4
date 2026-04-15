@@ -1,0 +1,57 @@
+0:055 secondsWelcome to Entara, Captain. Landing sequence diagnostics confirm a smooth touchdown. All vital systems are
+0:1313 secondsoperational and you are cleared to proceed with your mission. If you have a moment, take a look outside. Entara is a
+0:2121 secondsdry, rugged planet shaped by dust, rock formations, and impact craters. Many crews find the landscape impressive.
+0:2929 secondsIt's not an easy planet, but it has potential. And that potential is why you're here.
+0:3636 secondsThe Entarian people need your help to turn the potential of their planet's raw resources into prosperity. They depend
+0:4343 secondson structured trade to build a stable future, and your decisions will set the example. You'll be trading local resources through the extended
+0:5252 secondsinterplanetary resource exchange network known as Xyron. Your trading results are tracked in your profit and loss
+0:5959 secondsindicator expressed in Zyrex, short for extended interplanetary resource exchange currency.
+1:071 minute, 7 secondsYour objective is straightforward.
+1:091 minute, 9 secondsObtain a minimum of 200,000 XY profit after trading round two ends. If you succeed, your outpost will receive the
+1:181 minute, 18 secondsofficial Zyen node status, and you will be offered a follow-up mission. If not,
+1:241 minute, 24 secondsthis mission will end and you will have to return to base. Whatever you do, don't blink. More games, more fun. [screaming]
+1:331 minute, 33 secondsThe full graphical user interface is now available for you to control. It also provides access to the outpost view,
+1:401 minute, 40 secondsgiving you a clear overview of your outpost at a glance. Its appearance reflects your trading performance. As
+1:471 minute, 47 secondsyour profits grow, new and increasingly impressive buildings will be added,
+1:521 minute, 52 secondsexpanding your outpost in both size and stature. Within the outpost view, you'll also find the outpost info panel, which
+2:002 minutesdisplays your profit and loss indicator and your current position on the leaderboard. Selecting leaderboard takes you directly to the leaderboard view,
+2:102 minutes, 10 secondswhile crew honors opens your badges overview. You're encouraged to explore these sections in your own time to see
+2:172 minutes, 17 secondshow you compare to other crews and how these badges might provide an opportunity to showcase your progress or perhaps even flaunt it a little. At the
+2:262 minutes, 26 secondsbottom of the outpost view, you'll find the mission control dashboard, which serves as the central hub for all trading related activity. Selecting it
+2:352 minutes, 35 secondswill open this essential window. In the mission overview, you'll find the latest uplink along with two sections showing
+2:432 minutes, 43 secondsthe current status of the algorithmic trading challenge and the manual trading challenge. Selecting challenge details
+2:512 minutes, 51 secondswill bring you to the corresponding overview screen. If you explored the trading simulator during your journey to Entara, the algorithmic challenge format
+3:003 minutesshould already feel familiar. If not, I recommend revisiting the previous uplink for a brief refresher.
+3:073 minutes, 7 secondsThe algorithmic trading challenge revolves around a Python program that you will write and optimize across multiple trading rounds. Manual trading
+3:163 minutes, 16 secondschallenges, by contrast, are one-off opportunities and do not affect your algorithmic performance and vice versa.
+3:243 minutes, 24 secondsIt's best to approach the manual challenges as independent opportunities for profit. For the algorithmic trading challenge,
+3:323 minutes, 32 secondsyou will have access to two tradable goods, ashcoated osmium and inion pepper root. Ashcoated osmium is a dense, high
+3:423 minutes, 42 secondsvalue metallic compound found beneath entara's oxidized crust layers. Its market value tends to fluctuate, but
+3:503 minutes, 50 secondsyou'll want to examine the underlying pattern to determine how to generate initial profit.
+3:553 minutes, 55 secondsInan pepper root is a hearty, slow growing root native to Entara's dry plateaus. It's valued for its intense
+4:034 minutes, 3 secondsaroma and subtle energizing effects. Its price is generally considered more steady and predictable than that of ashcoated osmium.
+4:124 minutes, 12 secondsUse the historical market data provided in the data capsule to analyze both goods and develop your initial strategy.
+4:204 minutes, 20 secondsOnce you have a strategy in place,
+4:224 minutes, 22 seconds[music] translate it into a Python program and upload it to the network to run a performance test. As a reminder,
+4:294 minutes, 29 secondsyou may upload multiple programs during the trading round. When the round ends,
+4:344 minutes, 34 secondsthe last program successfully submitted by your crew will be used as the active algorithm to calculate your official trading results.
+4:434 minutes, 43 secondsToday we're making scrambled eggs.
+4:484 minutes, 48 secondsFor the manual trading challenge, you'll be participating in a celebratory exchange auction organized by the Entarian people. For this auction,
+4:574 minutes, 57 secondsyou'll have access to two static order books, one for ember mushrooms and one for dryland flax. These order books are
+5:065 minutes, 6 secondsalready closed to external activity. You will be placing the final orders before the auction executes at the end of the trading round. No additional orders or
+5:145 minutes, 14 secondsvolume changes will occur. When the auction ends, the exchange determines a single clearing price. This price is
+5:225 minutes, 22 secondsdetermined first by total volume traded and then by price, prioritizing higherpriced orders over lower priced ones. When order volumes are equal,
+5:335 minutes, 33 secondsyou can enter your buy or sell order along with the desired price and volume directly in the manual challenge overview. When you're ready, select
+5:425 minutes, 42 secondssubmit orders to confirm your input. Be aware that the auction executes with price time priority. In other words,
+5:505 minutes, 50 secondswhen multiple orders have the same price, the orders received by the exchange first have priority. Also, it
+5:575 minutes, 57 secondswould be good to take into account that after the auction clears, there won't be any continuous trading that you can partake in. However, you will be able to
+6:066 minutes, 6 secondssell all your dryland flax for 30 Zyrex per piece and all your ember mushrooms for 20 Zyrex per piece. One final but
+6:146 minutes, 14 secondsvery important note is that for these Ember Mushrooms trading fees per volume apply, 0.05 Zyrex for buying and 0.05 05
+6:246 minutes, 24 secondsZyrex for selling. That covers the essential information needed to proceed. If you're looking for more information,
+6:326 minutes, 32 secondsyou can visit the Prosperity Wiki at any time. I also recommend consulting your onboard advisor for additional insights
+6:396 minutes, 39 secondsand hints. Finally, the Discord community is available if you wish to connect with fellow traders.
+6:466 minutes, 46 secondsAs a final reminder, you have until the end of the trading round to submit both your Python program for the algorithmic trading challenge and your orders for
+6:556 minutes, 55 secondsthe manual trading challenge. Trading rounds on Entara last 72 hours. The remaining time is shown on the round
+7:027 minutes, 2 secondstimer. Once the timer reaches zero, the round closes and all submissions become final. That concludes the current
+7:117 minutes, 11 secondsbriefing. You can always revisit it in the mission overview window. Your mission starts now, Captain. I wish you the best of luck. Uplink complete.
+7:217 minutes, 21 secondsInitializing post uplink diagnostics.

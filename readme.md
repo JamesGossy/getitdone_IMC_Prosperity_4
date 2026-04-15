@@ -18,6 +18,5 @@ prosperity4btest trader.py <round>-<day> --no-out
 
 Example commands:
 
-Visualise round 0 day -2:
-prosperity4btest trader.py 0--2 --vis
+Visualise round 0 day -2: prosperity4btest trader.py 0--2 --vis
 

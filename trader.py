@@ -176,7 +176,7 @@ class Trader:
         # Passive quotes with inventory skew
         best_bid = max(od.buy_orders.keys()) if od.buy_orders else ACO_FAIR - 5
         best_ask = min(od.sell_orders.keys()) if od.sell_orders else ACO_FAIR + 5
-        inv_skew = int(position / limit * 3)
+        inv_skew = int(position / limit * 2)
 
         m_bid = min(best_bid + 1, ACO_FAIR - 1) - max(0, inv_skew)
         m_ask = max(best_ask - 1, ACO_FAIR + 1) - min(0, inv_skew)
@@ -227,7 +227,7 @@ class Trader:
 
         # 1. Aggressively buy asks at or below fair + 2
         for ask in sorted(od.sell_orders.keys()):
-            if ask > fair + 2:
+            if ask > fair + 4:
                 break
             take = min(-od.sell_orders[ask], buy_cap)
             if take > 0:
@@ -236,7 +236,7 @@ class Trader:
 
         # 2. Sell bids that are wildly above fair (noise mean-reversion)
         for bid in sorted(od.buy_orders.keys(), reverse=True):
-            if bid < fair + 5:
+            if bid < fair + 7:  
                 break
             give = min(od.buy_orders[bid], sell_cap)
             if give > 0:

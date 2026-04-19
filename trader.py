@@ -86,8 +86,8 @@ logger = Logger()
 
 # ── Parameters & Limits ──────────────────────────────────────────────────────
 LIMITS: Dict[str, int] = {
-    "ASH_COATED_OSMIUM": 50,
-    "INTARIAN_PEPPER_ROOT": 50,
+    "ASH_COATED_OSMIUM": 80,
+    "INTARIAN_PEPPER_ROOT": 80,
 }
 
 # ASH_COATED_OSMIUM: hard fair value (like Rainforest Resin)

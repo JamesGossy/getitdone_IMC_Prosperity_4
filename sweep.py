@@ -14,10 +14,10 @@ PARAM_GRID = {
     "ACO_FAIR": [10000],
     "IPR_SLOPE": [0.001],
     "ACO_SKEW": [2],                        # locked
-    "IPR_BUY_THRESH": [3.5,3.75, 4, 4.25, 4.5],            # zoom around optimal
+    "IPR_BUY_THRESH": [3, 4, 5],            # zoom around optimal
     "IPR_SELL_THRESH": [6],                 # dead code at tight ask, just pick one
-    "IPR_PASSIVE_ASK": [3.5,3.75,4,4.25,4.5],        # push tighter than sweep 1
-    "IPR_PASSIVE_BID": [0.5,0.75, 1, 1.25,1.5]            # NEW — baseline is 1 (floor-1)
+    "IPR_PASSIVE_ASK": [3,4,5],        # push tighter than sweep 1
+    "IPR_PASSIVE_BID": [0, 1, 2]            # NEW — baseline is 1 (floor-1)
 }
 
 # Maps parameter names to their Regex search pattern and replacement string.
@@ -26,11 +26,11 @@ PARAM_GRID = {
 REGEX_MAP = {
     "ACO_FAIR": (r"^ACO_FAIR\s*=\s*[\d_]+", "ACO_FAIR = {value}"),
     "IPR_SLOPE": (r"^IPR_SLOPE\s*=\s*[\d\.]+", "IPR_SLOPE = {value}"),
-    "ACO_SKEW": (r"int\(position\s*/\s*limit\s*\*\s*\d+\)", "int(position / limit * {value})"),
-    "IPR_PASSIVE_BID": (r"math\.floor\(fair\)\s*-\s*\d+", "math.floor(fair) - {value}"),
-    "IPR_BUY_THRESH": (r"ask\s*>\s*fair\s*\+\s*\d+", "ask > fair + {value}"),
-    "IPR_SELL_THRESH": (r"bid\s*<\s*fair\s*\+\s*\d+", "bid < fair + {value}"),
-    "IPR_PASSIVE_ASK": (r"math\.ceil\(fair\)\s*\+\s*\d+", "math.ceil(fair) + {value}")\
+    "ACO_SKEW": (r"int\(position\s*/\s*limit\s*\*\s*[\d\.]+\)", "int(position / limit * {value})"),
+    "IPR_PASSIVE_BID": (r"math\.floor\(fair\)\s*-\s*[\d\.]+", "math.floor(fair) - {value}"),
+    "IPR_BUY_THRESH": (r"ask\s*>\s*fair\s*\+\s*[\d\.]+", "ask > fair + {value}"),
+    "IPR_SELL_THRESH": (r"bid\s*<\s*fair\s*\+\s*[\d\.]+", "bid < fair + {value}"),
+    "IPR_PASSIVE_ASK": (r"math\.ceil\(fair\)\s*\+\s*[\d\.]+", "math.ceil(fair) + {value}")\
 }
 # ────────────────────────────────────────────────────────────────────────────
 

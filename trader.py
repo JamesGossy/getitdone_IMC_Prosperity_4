@@ -12,6 +12,19 @@ from datamodel import (
     TradingState,
 )
 
+# ═══════════════════════════════════════════════════════════════════════════
+#  MARKET ACCESS FEE  (Round 2 — Opportunity Valuation)
+#  Top 50% of bids win the contract for +25% extra trading volume.
+#  Only charged if you win. If you lose, you pay nothing but trade normal vol.
+#  Set this value based on: (a) what the +25% volume is worth to you, and
+#  (b) what you think the median bid in the field will be.
+#  Rule of thumb: fee must be well below expected profit from extra volume.
+#  ~100k/day base × 25% = ~25k upside → bid 5k–10k (beats conservative median,
+#  leaves margin). Default 8000 — adjust for confidence in reading the field.
+# ═══════════════════════════════════════════════════════════════════════════
+MARKET_ACCESS_FEE: int = 10_000
+ 
+
 
 # ── Logger (Visualizer Compatible) ──────────────────────────────────────────
 class Logger:
@@ -99,6 +112,8 @@ IPR_SLOPE = 0.001
 
 # ── Trader ───────────────────────────────────────────────────────────────────
 class Trader:
+    market_access_fee = MARKET_ACCESS_FEE
+
     def __init__(self):
         self._ipr_day_start: float | None = None
         self._ipr_last_ts: int = -1
@@ -157,8 +172,8 @@ class Trader:
 
         # Take mispriced asks
         for ask in sorted(od.sell_orders.keys()):
-            if ask >= ACO_FAIR:
-                break
+            if ask > ACO_FAIR: break
+            if ask == ACO_FAIR and position >= 0: break
             take = min(-od.sell_orders[ask], buy_cap)
             if take > 0:
                 orders.append(Order(product, ask, take))
@@ -166,7 +181,9 @@ class Trader:
 
         # Take mispriced bids
         for bid in sorted(od.buy_orders.keys(), reverse=True):
-            if bid <= ACO_FAIR:
+            if bid < ACO_FAIR:
+                break
+            if bid == ACO_FAIR and position <= 0:
                 break
             give = min(od.buy_orders[bid], sell_cap)
             if give > 0:
@@ -225,7 +242,7 @@ class Trader:
         buy_cap = limit - position
         sell_cap = limit + position
 
-        # 1. Aggressively buy asks at or below fair + 2
+        # 1. Aggressively buy asks at or below fair + 4
         for ask in sorted(od.sell_orders.keys()):
             if ask > fair + 4:
                 break
@@ -236,7 +253,7 @@ class Trader:
 
         # 2. Sell bids that are wildly above fair (noise mean-reversion)
         for bid in sorted(od.buy_orders.keys(), reverse=True):
-            if bid < fair + 7:  
+            if bid < fair + 6:  
                 break
             give = min(od.buy_orders[bid], sell_cap)
             if give > 0:
@@ -250,7 +267,7 @@ class Trader:
 
         # Only sell passively well above fair to avoid missing the uptrend
         if sell_cap > 0:
-            passive_ask = max(math.ceil(fair) + 5, best_ask - 1)
+            passive_ask = max(math.ceil(fair) + 4, best_ask - 1)
             orders.append(Order(product, passive_ask, -sell_cap))
 
         return orders

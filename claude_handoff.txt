@@ -1,0 +1,114 @@
+# IMC Prosperity 4 — Round 2 Algorithm Handoff
+
+## Current best params (validated on round 1 + round 2, 60k ticks)
+
+| Param | Value |
+|---|---|
+| ACO_FAIR | 10000 |
+| IPR_SLOPE | 0.001 |
+| ACO_SKEW | 2 |
+| IPR_BUY_THRESH | 4 |
+| IPR_SELL_THRESH | 6 |
+| IPR_PASSIVE_ASK | 4 |
+| IPR_PASSIVE_BID | 1 |
+| MARKET_ACCESS_FEE | 10,000 |
+
+**Note**: All tunable params must be **integers**. The backtester / order engine does not accept floats. Keep sweep grids in `[1, 2, 3, ...]` form only.
+
+## Performance
+
+- Round 2 only: **297,633**
+- Round 1 + Round 2 combined: **586,143**
+
+## Key facts about the data
+
+- **ACO**: stable at 10,000, std ~5. Mean-reverting. Only 2-4% of ticks have directly takeable mispricings. Core strategy is tight market-making with small inventory skew.
+- **IPR**: near-perfect linear trend (fair = day_start + 0.001 × timestamp, R²=0.9999). Residual std 2.37, autocorrelation ≈ 0 (white noise around trend). Day starts rise by 1000 between days: ~11000/12000/13000 for days -1/0/1. Day 2 will likely start ~14000.
+- Big volume market trades cluster at ±8 from mid for ACO, but most fills happen at ±2-4.
+
+## Where to push next — user should run these sweeps
+
+### Sweep A — Size-laddered IPR ask (highest expected value)
+
+Instead of one 80-unit passive ask at `ceil(fair)+4`, split into two price levels and sweep the split point and the offsets. Requires code change to post two orders plus new regex entries for the split.
+
+Recommend the user run this grid (integers only):
+
+```python
+PARAM_GRID = {
+    "ACO_SKEW": [2],
+    "IPR_BUY_THRESH": [4],
+    "IPR_SELL_THRESH": [6],
+    "IPR_PASSIVE_BID": [1],
+    "IPR_ASK_SPLIT": [30, 40, 50],        # units at tight tier (rest at wide)
+    "IPR_ASK_TIGHT": [2, 3, 4],           # ceil(fair) + X for tight ask
+    "IPR_ASK_WIDE":  [5, 6, 7, 8],        # ceil(fair) + X for wide ask
+}
+```
+
+3 × 3 × 4 = 36 configs, ~4 minutes. Beat **297,633** to be worth keeping.
+
+### Sweep B — ACO bid ladder (run only if Sweep A shows ladders help)
+
+Same idea on ACO: split the passive bid/ask into two levels. Integer grid:
+
+```python
+PARAM_GRID = {
+    "ACO_SPLIT":       [30, 40, 50],     # units at tight tier
+    "ACO_BID_TIGHT":   [1, 2],           # 10000 - X
+    "ACO_BID_WIDE":    [3, 4, 5],
+    "ACO_ASK_TIGHT":   [1, 2],           # 10000 + X
+    "ACO_ASK_WIDE":    [3, 4, 5],
+}
+```
+
+3 × 2 × 3 × 2 × 3 = 108 configs, ~12 minutes.
+
+### Sweep C — Residual-conditional IPR bid (if A and B don't help)
+
+New mechanic: when `mid - fair < -3`, use tighter bid offset; otherwise use normal. Add a regex for a conditional branch and sweep the threshold and the two offsets.
+
+```python
+PARAM_GRID = {
+    "IPR_DIP_THRESH":    [2, 3, 4],      # mid - fair < -X triggers dip mode
+    "IPR_BID_NORMAL":    [1, 2],
+    "IPR_BID_DIP":       [-1, 0, 1],     # more aggressive during dip (negative = above floor)
+}
+```
+
+3 × 2 × 3 = 18 configs, ~2 minutes.
+
+### Sweep D — Fine integer sweep around current optimum (only if A/B/C all fail)
+
+```python
+PARAM_GRID = {
+    "ACO_SKEW":          [1, 2, 3],
+    "IPR_BUY_THRESH":    [3, 4, 5],
+    "IPR_SELL_THRESH":   [5, 6, 7],
+    "IPR_PASSIVE_ASK":   [3, 4, 5],
+    "IPR_PASSIVE_BID":   [0, 1, 2],
+}
+```
+
+3⁵ = 243 configs, ~28 minutes. Run on **round 1 + round 2 combined** for robustness.
+
+## Market access fee: 10,000 (locked)
+
+Math: base 99k/day × 25% = 24.8k/day upside, ~74k over a 3-day round if won. Overbid 5k costs 5k; underbid loses 74k. Asymmetric payoff favors a generous bid. 10k beats the likely median (est. 3-7k from Synthia hints) with margin. Don't go below 8k. Raise to 12k only if paranoid about an aggressive field.
+
+## Manual challenge — DONE, do not revisit.
+
+## Files referenced
+
+- `trader.py` — current submission
+- `prices_round_2_day_{-1,0,1}.csv`
+- `trades_round_2_day_{-1,0,1}.csv`
+- Sweep script (itertools over REGEX_MAP hot-swap, all integer grids)
+
+## Recommended order of work for the user
+
+1. Confirm current trader.py reproduces 297,633 on round 2.
+2. Run **Sweep A** (laddered IPR ask) — requires small code change to post two asks instead of one, plus two new regex entries.
+3. If Sweep A produces a winner above 298,000, run **Sweep B** (ACO ladder).
+4. If Sweep A is flat or worse, skip B and run **Sweep C** (residual-conditional bid).
+5. If none beat 297,633, run **Sweep D** as final sanity check, then ship current best.

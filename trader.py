@@ -25,7 +25,6 @@ from datamodel import (
 MARKET_ACCESS_FEE: int = 13_000
  
 
-
 # ── Logger (Visualizer Compatible) ──────────────────────────────────────────
 class Logger:
     def __init__(self) -> None:

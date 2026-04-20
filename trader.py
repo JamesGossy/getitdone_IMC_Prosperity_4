@@ -22,7 +22,7 @@ from datamodel import (
 #  ~100k/day base × 25% = ~25k upside → bid 5k–10k (beats conservative median,
 #  leaves margin). Default 8000 — adjust for confidence in reading the field.
 # ═══════════════════════════════════════════════════════════════════════════
-MARKET_ACCESS_FEE: int = 10_000
+MARKET_ACCESS_FEE: int = 13_000
  
 
 

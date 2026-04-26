@@ -1,0 +1,64 @@
+Algorithmic Challenge
+Brief
+You have three new tradable goods available to trade with. Incorporate these Hydrogel Packs, Velvetfruit Extracts, and Velvetfruit Extract Vouchers (VEVs) into your strategy and translate it into a new Python program to upload to the network.
+
+ALGORITHM STATUS
+Status
+ERROR_FINISHED
+
+Recent upload
+6 minutes ago
+
+
+Open Challenge
+DATA CAPSULE
+This Data Capsule contains historical performance data for all available tradable goods.
+
+Download the data file to analyze the performance history of Hydrogel Packs and Velvetfruit Extract.
+
+All the Velvetfruit Extract Vouchers have a Time To Expiry (TTE) of 7 Solvenarian days, starting from day 1. The available VEVs are:
+
+VEV_4000; Strike price: 4000
+VEV_4500; Strike price: 4500
+VEV_5000; Strike price: 5000
+VEV_5100; Strike price: 5100
+VEV_5200; Strike price: 5200
+VEV_5300; Strike price: 5300
+VEV_5400; Strike price: 5400
+VEV_5500; Strike price: 5500
+VEV_6000; Strike price: 6000
+VEV_6500; Strike price: 6500
+TG01
+Hydrogel Packs
+Hydrogel Packs
+TG02
+Velvetfruit Extract
+Velvetfruit Extract
+TG03
+Velvetfruit Extract Voucher
+Velvetfruit Extract Voucher
+Download data capsule
+A.R.I.A. Uplink
+Review the A.R.I.A. Uplink from the current round
+
+This A.R.I.A. Uplink contains all the basic information needed to start working on your strategy and Python program.
+
+Aria Uplink
+
+Manual Challenge
+The Celestial Gardeners' Guild
+Tradable Good
+Ornamental Bio-pod
+
+The Celestial Gardeners' Guild is making a rare appearance on Solvenar during the Great Orbital Ascension Trials!
+
+They’ve brought a limited supply of Ornamental Bio-Pods and are offering a one-time opportunity to trade with participating crews. After this round, the Guild will continue their trade mission to another planet, where they’ll attempt to sell any remaining Bio-Pods. This is a one-time opportunity and does not affect your algorithmic trading activities. Enter your submission below and click Submit to confirm.
+
+YOUR task
+Each team may submit two price offers (between 670 and 920 XIRECs) for a chance to trade. The so-called “Guardeners” of the Guild will accept the lowest bid that exceeds their personal reserve price. For the second offer, they’ll also factor in the global average bid submitted by other crews. If your bid is above that average, you’re likely to close the deal. But if it falls below, the probability of a trade decreases sharply. Don’t forget to submit your bids when you are ready.
+
+670-920
+Lowest Bid*
+670-920
+Highest Bid*
+Confirm your order. You can re-submit orders until the end of the round.

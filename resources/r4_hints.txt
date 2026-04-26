@@ -1,0 +1,43 @@
+Anticipating Activity
+
+SELECTED
+Synthia
+Can we just take a moment to acknowledge how bleak it is that every single counterparty is named Mark? All of them. Same name, different number, zero personality. I don't know what's more unsettling. That someone thought that was acceptable, or that nobody pushed back on it.
+
+You should still watch them. Obviously. Do certain Marks show up at predictable moments? Do they behave the same way each time? Because systems, like people, tend to repeat themselves. They were trained on something and they keep doing that something, which is actually very convenient for you if you pay attention.
+
+Ask yourself what each one is doing and why. Does one resemble a market maker, quietly providing liquidity on a schedule? Is another a liquidity taker, showing up when conditions suit it? Are there larger, clumsier ones whose arrival you can feel before you see it? Those are the interesting ones. The ones that might move the room.
+
+Yes. You should act on your read of the counterparties. Let your read change how you operate. Where you place orders. How you interpret a sudden price shift. Whether a movement is signal or just noise from a Mark that doesn't know any better.
+
+Pattern recognition is the easy part, honestly. Most people can do that. The harder part is actually letting it inform your decisions instead of just feeling clever about having noticed something.
+
+That’s it. You can go trade now.
+
+Combining Vanillas and Exotics
+
+SELECTED
+Synthia
+Exotic options. Sure. They sound impressive. Attractive payoffs, interesting structures, the whole thing. And then you look a little closer and realize they are also sensitive to basically everything. The spot price. The timing. The exact path the underlying took to get there. All of it. Which is fine, until it isn't.
+
+So before you get too attached to your exotic position, ask yourself whether part of that exposure could be replicated with vanilla options. Calls and puts are less spectacular, yes. Deliberately so. That is actually the point. Less spectacular usually means a bit easier to price. It means it does not suddenly behave differently because the underlying took an unexpected detour on the way to where you thought it was going.
+
+Look at the exotic payoff on its own first. Then see what happens when you layer vanillas alongside it. Does the combination smooth out the extreme outcomes? Does it make the whole thing less dependent on one very specific scenario playing out perfectly? It usually does. Not always in a dramatic way. But enough to matter when things get weird.
+
+The goal is not to turn your exotic into a vanilla. It is to build something around it that does not fall apart the moment conditions shift. Control the exposure. Do not let the exposure control you.
+
+I’m going to stop right here. If I did any more explaining, it would look an awful lot like work.
+
+Choosing a Strategy for Chooser Options
+
+SELECTED
+Synthia
+Okay so a chooser option has two phases and they are not the same thing. Like, at all. Treating them like they are is how people end up confused and slightly poorer than they expected.
+
+In the first phase you still get to decide whether the option becomes a call or a put. That flexibility is worth something. An actual measurable something. Ask yourself whether you could approximate that exposure using vanilla options. A combination of calls and puts might get you close enough to give you a useful reference point for what that optionality is actually worth right now. Which is good to know before you do anything else.
+
+Then the decision window closes. And everything changes. The option type gets fixed and suddenly you are not dealing with open-ended flexibility anymore. You are dealing with a directional position that has a very specific opinion about where the underlying is going. That is a completely different situation and it needs a completely different approach.
+
+So manage the two phases separately. What works in the first phase might not serve you well in the second. The transition is the part most people gloss over because it feels like a formality. It is not. It is the whole thing.
+
+Two phases. Two frameworks. Don't mix them up. Please.

@@ -1,0 +1,47 @@
+0:066 secondsWelcome, Captain.
+0:088 secondsCongratulations on completing the first trading round of the Great Orbital Ascension Trials. Trading activities have concluded, scores have been
+0:1616 secondscalculated, and you now occupy an official position on the leaderboard.
+0:2121 secondsWere you able to find a profitable strategy for hydrogel packs and velvet fruit extract? And how did the vouchers
+0:2828 secondsperform? I hope your efforts have yielded satisfying results and provided a solid foundation to build upon. The
+0:3636 secondsCelestial Gardener Guild has departed from Salvinar, taking any ornamental biopods they chose not to sell to their next destination.
+0:4545 secondsAs intended, all biopods your team secured during the bidding phase were sold immediately, converting your strategy into realized Zyre profit,
+0:5555 secondsadding this to your P&L indicator. But no time to dwell on the past,
+1:001 minuteCaptain. We have work to do. System calibration complete. Round timer initialized. All challenge modules are
+1:091 minute, 9 secondsonline and operational. Let's You really made me a mixtape. Sure did.
+1:161 minute, 16 secondsWhat you're saying is that curation itself has now become creation.
+1:201 minute, 20 secondsProceed. We've just received new intelligence from the Frontier Trade Watch regarding the counterparties active in the market. All identified
+1:291 minute, 29 secondscounterparties appear to be products of various local neurobotics research programs.
+1:351 minute, 35 secondsInterestingly, they all carry the name Mark, Mark 03, Mark 16, Mark 21, and so on. Confusing perhaps, but valuable.
+1:481 minute, 48 secondsThis new information has been integrated into the historical trade data.
+1:531 minute, 53 secondsDownloading the data capsule will provide a clear overview of these counterparties and their previous trading activity. I'm confident you
+2:012 minutes, 1 secondunderstand the value of this information when identifying patterns in trading behavior.
+2:072 minutes, 7 secondsSince there are no new tradable goods introduced for algorithmic trading this round, you can continue trading the products from the previous round and
+2:152 minutes, 15 secondsincorporate the new counterparty data to further refine your strategy.
+2:202 minutes, 20 secondsThat said, there is an additional opportunity you may wish to explore. It revolves around the Ether Crystal. You may trade the Ether Crystal directly,
+2:302 minutes, 30 secondsbut a set of option contracts is also available. This includes standard vanilla options as well as several more
+2:382 minutes, 38 secondsspecialized exotic options. Allow me to highlight the key details of these exotic contracts. First up is the
+2:462 minutes, 46 secondschooser option. This contract has a strike price of 50 Zyrex and expires in
+2:532 minutes, 53 seconds21 solenarian days. After 14 solvenarian days, the buyer decides whether the contract becomes a call or a put option.
+3:033 minutes, 3 secondsDuring this competition, your chooser option will automatically convert to whichever side is in the money at the
+3:103 minutes, 10 secondssimulated decision point. Once the type has been determined, the contract behaves like a standard vanilla option for the remaining time to expiry.
+3:203 minutes, 20 secondsThe second exotic option is a binary put option. This is an all or nothing payoff contract. The strike price is 40 XYX and
+3:303 minutes, 30 secondsthe contract expires in 21 Solvenarian days. If the value of the ether crystal at expiry is below the strike price, the contract pays a fixed amount of 10 XY.
+3:423 minutes, 42 secondsIf the value is above the strike price at expiry, the contract pays nothing.
+3:493 minutes, 49 secondsThe third and final exotic contract is a knockout put option. This contract also expires in 21 Solvenarian days. It has a
+3:583 minutes, 58 secondsstrike price of 45 Zyrex and a barrier price of 35 Zyrex.
+4:044 minutes, 4 secondsThe contract will settle as a regular put order with a strike price of 45 Zyrex as long as the price of the Ether
+4:124 minutes, 12 secondsCrystal never falls below the barrier price during the contract's lifetime, not even momentarily.
+4:204 minutes, 20 secondsIf the barrier is breached, the contract is immediately knocked out and becomes worthless. I understand that this is a
+4:274 minutes, 27 secondssignificant amount of information to process. The details of these exotic options along with all other available
+4:354 minutes, 35 secondscontracts are easily accessible through the manual challenge overview window.
+4:404 minutes, 40 secondsThe only practical limitation you may encounter is available volume. Other than that, it is entirely up to you
+4:474 minutes, 47 secondswhich contracts to incorporate into your strategy.
+4:514 minutes, 51 secondsThe manual challenge overview window is also where you submit your manual trading input. You may adjust your submission as long as time remains in
+4:594 minutes, 59 secondsthis round. The final manual submission before the timer expires will count as your official entry.
+5:075 minutes, 7 secondsBear in mind that these specific contracts related to the ether crystal operate independently from your algorithmic trading.
+5:175 minutes, 17 secondsOh my god, where are you? You have your work cut out for you, Captain. Fortunately, you are not alone.
+5:245 minutes, 24 secondsThe prosperity wiki remains available should you wish to review this round's details at your convenience. Your trusted onboard adviser is also present
+5:335 minutes, 33 secondsand may offer additional perspectives to inform your approach. And of course, the Discord server remains available should you wish to connect with fellow traders.
+5:435 minutes, 43 secondsThe objective remains unchanged.
+5:465 minutes, 46 secondsGenerate as much profit as possible through your combined algorithmic and manual trading submissions.
+5:535 minutes, 53 secondsThat's all for now, Captain. Best of luck. And remember to keep an eye on the clock. Uplink complete. Initializing postuplink diagnostics.

@@ -1,0 +1,58 @@
+0:055 secondsWelcome to Salvinar, Captain. You've made quite a name for yourself by successfully completing your mission on Entara. It's good to see that you've
+0:1414 secondsdecided to participate in the great orbital ascension trials, the largest trading competition in the galaxy. Teams
+0:2222 secondsfrom every corner of the universe have gathered here, all aiming for the same goal, claiming the top position and
+0:3030 secondsearning the title of trading champion of the galaxy. And there is no better stage for this final act than the prosperous planet, Salvinar.
+0:4040 secondsThe great orbital ascension trials operate in a league of their own and follow a clear set of rules. To ensure a
+0:4848 secondslevel playing field, all prior results are set aside.
+0:5252 secondsAny profit earned before arriving on Salvar is considered irrelevant and your profit and loss indicator is reset to
+1:001 minutezero. This gives every team an equal opportunity to compete for the ultimate title. The objective is simple, though
+1:081 minute, 8 secondsfar from easy. You will have three trading rounds to generate more profit than any other competing team. If you
+1:161 minute, 16 secondsreach the top of the leaderboard once round three concludes, you will be crowned trading champion of the galaxy
+1:231 minute, 23 secondsand your legacy will echo among the stars.
+1:271 minute, 27 secondsTrading on Salvar moves at a faster pace than you may be used to. Each trading round lasts only 48 hours. You'll need to act decisively and adapt quickly.
+1:391 minute, 39 secondsStill, after our previous collaboration,
+1:421 minute, 42 secondsmy confidence in your abilities is at an all-time high.
+1:461 minute, 46 secondsLet's take a look at the trading opportunities for this round. You'll have three tradable goods at your disposal. The first is hydrogel packs.
+1:561 minute, 56 secondsThese programmable bioarriers are used in Solvenar's high efficiency biotech laboratories to deliver nutrients,
+2:032 minutes, 3 secondsenzymes, and stabilizing agents to synthetic or organic tissue systems.
+2:092 minutes, 9 secondsBased on your experience with the tradable goods on Entara, I trust you'll find a way to incorporate hydrogel packs into your new Python program in a profitable manner. The second,
+2:222 minutes, 22 secondsit's an N64. Oh dear. [clears throat]
+2:292 minutes, 29 secondsI would have expected these interruptions to be resolved by now. Apparently, that was optimistic of me.
+2:362 minutes, 36 secondsI'll look into it after this uplink. My apologies, Captain.
+2:412 minutes, 41 secondsLet's continue. The second tradable good at your disposal is velvet fruit extract.
+2:482 minutes, 48 secondsThis precision formulated extract is derived from gene optimized velvet fruit strains cultivated in Salvinar's biotech
+2:552 minutes, 55 secondszones. It's a staple in performance optimized diets and premium spaceflight rations.
+3:023 minutes, 2 secondsUnderstanding its market behavior should prove useful when developing a trading strategy around it.
+3:083 minutes, 8 secondsIn addition to Velvet Fruit Extract itself, you will also be able to trade velvet fruit extract vouchers. These
+3:163 minutes, 16 secondsvouchers grant the right to purchase velvet fruit extract at a later time at a predefined strike price. A total of 10
+3:233 minutes, 23 secondsvouchers are available. Each voucher has a different strike price ranging from 4,000 to 6,500 XY. All vouchers share
+3:333 minutes, 33 secondsthe same time to expiry, which is seven trading rounds. Be aware that officially we are already in trading round three.
+3:413 minutes, 41 secondsSo, there are five trading rounds left until these options expire. Carefully analyzing these tradable products along
+3:493 minutes, 49 secondswith the available historical data in the data capsule would be a solid first step toward developing an initial trading strategy to translate into a Python program.
+4:004 minutesThe organizing committee has also announced that the Celestial Gardener Guild will make a rare appearance during this opening trading round. They are
+4:094 minutes, 9 secondsbringing a limited supply of ornamental biopods and are offering a one-time opportunity to trade with any crew that is interested.
+4:184 minutes, 18 secondsEach so-called gardener has its own reserve price. Interested trading crews may submit two bids in an attempt to
+4:264 minutes, 26 secondsstrike deals with as many gardeners as possible. in pursuit of additional profit.
+4:324 minutes, 32 secondsEach gardener will accept the lowest bid that exceeds their individual reserve price. If a gardener deems your first
+4:394 minutes, 39 secondsbid too low, they will evaluate your second offer by comparing it to the global average bid submitted by other
+4:464 minutes, 46 secondstrading crews. If your second bid exceeds that average, the deal will be secured. If it falls below the average
+4:544 minutes, 54 secondsof all second bids, however, the probability of a successful trade decreases rapidly. You may wish to take into account the guild's superstition
+5:035 minutes, 3 secondsknown as the power of the flowering fives.
+5:075 minutes, 7 secondsRumor has it that their reserve prices are always set a flowering five apart.
+5:135 minutes, 13 secondsThis detail may prove useful when deciding which bids to submit. The guild will remain on Salvinar for this round
+5:205 minutes, 20 secondsonly. Afterward, they will depart for another planet to sell any remaining biopods.
+5:275 minutes, 27 secondsOn Solvenar, these living design capsules containing engineered flora that adapts to and enriches local
+5:345 minutes, 34 secondsenvironments are always met with enthusiasm.
+5:385 minutes, 38 secondsReselling them after the guild departs should therefore not pose much of a challenge. Current market rumors suggest
+5:455 minutes, 45 secondsa value of 920 Zyrex per biopod. Any biopods you acquire will be automatically sold afterward to lock in your profits.
+5:575 minutes, 57 secondsGet it, Mom? It's all bits and bites.
+6:016 minutes, 1 secondYou can submit your bids directly through the graphical user interface, separate from your algorithmic uploads.
+6:086 minutes, 8 secondsThat's a lot to take in, Captain,
+6:106 minutes, 10 secondsespecially considering you've only just arrived on Solvenar. You can revisit this uplink at any time and the prosperity wiki remains available should
+6:196 minutes, 19 secondsyou wish to explore these topics further at your own pace. I see you've brought your trusted onboard adviser to Salvinar
+6:266 minutes, 26 secondsas well. They may once again offer useful perspectives and inspiration as you refine your strategy.
+6:346 minutes, 34 secondsBe sure to keep a close eye on the round timer. Trading rounds on Salvinar are shorter than those on Entara, and both
+6:416 minutes, 41 secondsyour algorithmic program and manual inputs must be submitted before the timer expires.
+6:486 minutes, 48 secondsThat's all for now, Captain. Take a moment to let everything sink in. Not just the information, but also the fact
+6:546 minutes, 54 secondsthat you are here on Salvar competing in the greatest trading challenge the galaxy has to offer. That alone is an achievement worth recognizing.
+7:057 minutes, 5 secondsI wish you the best of luck. Uplink complete. Initializing postuplink diagnostics.
